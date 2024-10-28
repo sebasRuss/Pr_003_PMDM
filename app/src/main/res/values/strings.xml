@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Pr_3_PMDM</string>
+    <string name="mi_perfil_personal">Mi Perfil Personal</string>
+    <string name="nombre">Nombre: </string>
+
+
+    <string name="musica">Música</string>
+    <string name="arte">Arte</string>
+    <string name="deporte">Deporte</string>
+    <string name="lectura">Lectura</string>
+    <string name="otro">Otro</string>
+    <string name="femenino">Femenino</string>
+    <string name="masculino">Masculino</string>
+    <string name="suscribirse">Suscribirse</string>
+    <string name="guardar">Guardar</string>
+    <string name="name">Name</string>
+    <string name="apellido">Apellido</string>
+    <string name="correo_electronico">Correo Electronico</string>
+
+    <string-array name="ciudades_array">
+        <item>Nada selecionado</item>
+        <item>La tierra media</item>
+        <item>Narnia</item>
+        <item>Venezuela</item>
+        <item>Estrella de la muerte</item>
+        <item>Multiverso</item>
+    </string-array>
+</resources>
