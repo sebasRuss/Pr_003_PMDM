@@ -1,13 +1,17 @@
 package com.example.pr_3_pmdm
 
 import android.annotation.SuppressLint
+import android.media.audiofx.BassBoost.OnParameterChangeListener
 import android.os.Bundle
+import android.provider.MediaStore.Audio.Radio
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.Spinner
@@ -36,6 +40,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var textNombre : EditText
     lateinit var textApellido : EditText
     lateinit var textCorreo : EditText
+    var eleccionSuscrito = "No suscrito"
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,9 +59,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         radioGroup = findViewById(R.id.radioGroupSexo)
         botonGuardar = findViewById(R.id.buttonGuardar)
         textVisualizacion = findViewById(R.id.textViewVisualizacionPerfil)
-        seekBar = findViewById(R.id.seekBarSatisfaccion)
-        textSatisfaccion = findViewById(R.id.textViewValorSatisfaccion)
-        switchSuscribirse = findViewById(R.id.switchSuscribirse)
         checkBoxLectura = findViewById(R.id.checkBoxLectura)
         checkBoxDeporte = findViewById(R.id.checkBoxDeporte)
         checkBoxMusica = findViewById(R.id.checkBoxMusica)
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         textApellido = findViewById(R.id.editTextApellido)
         textCorreo = findViewById(R.id.editTextTextCorreoElectronico)
 
+        //Spinner y su adaptador
         spinner = findViewById(R.id.spinnerPaises)
         //Al adaptador le pasao como parametro esta actividad y el array de ciudades
         //guardado en String
@@ -79,6 +83,36 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         //fijacion del listener
         spinner.onItemSelectedListener = this
+
+        //seekBar y su visualizacion
+        seekBar = findViewById(R.id.seekBarSatisfaccion)
+        textSatisfaccion = findViewById(R.id.textViewValorSatisfaccion)
+
+        //indicamos el rango de valor del seekBar
+        seekBar.max = 10
+        //fijacion del listener:
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged (SeekBar : SeekBar?, progreso : Int,fromUser: Boolean ){
+                //actualizamos el textSatisfaccion:
+                textSatisfaccion.setText("$progreso/10")
+            }
+            //metodo abstracto que notifica cuando el usuario ha empezado a tocar el seekbar
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+            //metodo abstracto que notifica cuando el usuario ha terminado de tocar el seekbar
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+        })
+        switchSuscribirse = findViewById(R.id.switchSuscribirse)
+        switchSuscribirse.setOnCheckedChangeListener{_,isChecked ->
+
+            if (isChecked){
+                eleccionSuscrito = "Suscrito"
+            }else {
+                eleccionSuscrito = "No Suscrito"
+            }
+        }
+
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -96,12 +130,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * Funcion que mostrara la informacion al presionar el botonGuardar
      */
     private fun visualizacion (){
-
-        val eleccionPreferencia = usoCheckBox()
-
         //incorporamos a esta funcion el botonGuardar
         botonGuardar.setOnClickListener {
 
+            val preferencia = validadorCheckBox()
             //guardamos la informacion introducida en los textEdit del formulario
             val nombre = textNombre.text.toString()
 
@@ -109,14 +141,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val apellido = textApellido.text.toString()
             val correo = textCorreo.text.toString()
             val ciudad = spinner.selectedItem.toString()
-            val eleccionPreferencia1 = eleccionPreferencia
-
+            val sexo = usoRadioBoton()
+            val nivelSatisfaccion = textSatisfaccion.text.toString()
 
             //vamos a controlar que los campos a introducir no esten vacios
             if (textNombre.text.toString().isEmpty()){
                 mensajeError("El campo Nombre esta vacio")
-            }else if (textApellido.text.toString().isEmpty()){
-                mensajeError("El campo Apellido esta vacio")
             }else if (textApellido.text.toString().isEmpty()){
                 mensajeError("El campo Apellido esta vacio")
             //vamos a introducir en este condicional la funcion de validarCorreo, si devuelve false esq no cumple con el validador
@@ -125,19 +155,49 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             } else {
                 val mensajeVisualizacion =
                     "Nombre: $nombre\nApellido: $apellido\nCorreo Electronico: $correo\nCiudad:" +
-                            " $ciudad\nPreferencias: $eleccionPreferencia1"
+                            " $ciudad\nPreferencias: $preferencia\nSexo: $sexo\nNivel Satisfaccion: $nivelSatisfaccion\nSuscripción: $eleccionSuscrito "
+
                 //enviamos la infomacion a la visuazliccion del textView
                 textVisualizacion.setText(mensajeVisualizacion)
             }
         }
     }
+
     /**
-     * Funcion que envia un mensaje de error usando snackbar
+     *Funcion que cuya logica controla si los checkBox son activados o no
+     * @return String
+     */
+    private fun validadorCheckBox() : String{
+        //Log.d("CHECK", "${checkBoxLectura.isChecked}-${checkBoxDeporte.isChecked}-${checkBoxMusica.isChecked}-${checkBoxArte.isChecked}")
+        var preferenciasConcatenadas = ","
+        if (checkBoxLectura.isChecked){
+            preferenciasConcatenadas += checkBoxLectura.text.toString() + " , "
+        }
+        if (checkBoxMusica.isChecked){
+            preferenciasConcatenadas += checkBoxMusica.text.toString()+ " , "
+        }
+        if(checkBoxDeporte.isChecked){
+            preferenciasConcatenadas += checkBoxDeporte.text.toString() + " , "
+        }
+        if(checkBoxArte.isChecked){
+            preferenciasConcatenadas += checkBoxArte.text.toString()
+        }
+        return preferenciasConcatenadas
+    }
+
+    /**
+     * Funcion que envia un mensaje de error usando snackbar cuando el campo se deja vacio
      * @param mensaje
+     * @return String
      */
     private fun mensajeError (mensaje : String){
         Snackbar.make (findViewById(android.R.id.content), mensaje, Snackbar.LENGTH_LONG).show()
     }
+    /**
+     * Funcion que envia un mensaje de error usando snackbar cuando el correo no es validado
+     * @param email
+     * @return Booleano
+     */
     private fun validarCorrreo (email : String): Boolean{
         //^ : indica lel inicio de cadena
         // A-Za-z : permite letras minus y mayus (Aa -> zZ),
@@ -157,37 +217,22 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
      * Funcion que controla el uso de los checkBox
      * @return devuelve una lista de string con el contenido texto de los checkBox
      */
-    private fun usoCheckBox () : String {
-        //creamos un arrayList para guardar el texto de los checkBox seleccionados
-        val eleccionesPreferencias = ArrayList<String>()
+//
+    private fun usoRadioBoton (): String{
 
-        //si alguno de los checkBox es seleccionado, llamamos a la funcion concatenarPreferencias para que gestione
-        //la informacion del texto de los checkBox
-        checkBoxLectura.setOnCheckedChangeListener { _, isChecked ->
-           concatenarPreferencias(checkBoxLectura, eleccionesPreferencias)
-        }
-        checkBoxDeporte.setOnCheckedChangeListener { _, isChecked ->
-            concatenarPreferencias(checkBoxDeporte, eleccionesPreferencias)
-        }
-        checkBoxMusica.setOnCheckedChangeListener { _, isChecked ->
-            concatenarPreferencias(checkBoxMusica, eleccionesPreferencias)
-        }
-        checkBoxArte.setOnCheckedChangeListener { _, isChecked ->
-            concatenarPreferencias(checkBoxArte, eleccionesPreferencias)
-        }
-        //devolvemos la lista y separamos cada elemento con una coma
-        return eleccionesPreferencias.joinToString (", ")
+        //guardamos la opcion que se ha seleccionado
+        val seleccionRadioButtonId = radioGroup.checkedRadioButtonId
+        //si la opccion no es vacia:
+        if (seleccionRadioButtonId != -1){
+            //tomamos la opcion seleccionada
+            val seleccionRadioButton = findViewById<RadioButton>(seleccionRadioButtonId)
+            //Escribo en una variable string la opcion seleccionada
+            val opcionSeleccionada = seleccionRadioButton.text.toString()
 
+            return opcionSeleccionada
+        }else{
+            return "No ha seleccionado un sexo"
+        }
     }
 
-    /**
-     * Funcion que guardara en un arrayList el contenido text de los checkBox al ser seleleccinados
-     * @param checkBox
-     * @param eleccionesPreferencias
-     */
-    private fun concatenarPreferencias (checkBox : CheckBox, eleccionesPreferencias : ArrayList<String>){
-        if (checkBox.isChecked){
-            eleccionesPreferencias.add(checkBox.text.toString())
-        }
-    }
 }
