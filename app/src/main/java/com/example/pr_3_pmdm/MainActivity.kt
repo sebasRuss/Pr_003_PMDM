@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var textNombre : EditText
     lateinit var textApellido : EditText
     lateinit var textCorreo : EditText
-    var eleccionSuscrito = "No suscrito"
+    var eleccionSuscrito = ".."
 
 
     @SuppressLint("MissingInflatedId")
@@ -92,14 +92,15 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         seekBar.max = 10
         //fijacion del listener:
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            //progeso : Int es el valor al ir moviendo el seekBar, guardamos aqui el valor
             override fun onProgressChanged (SeekBar : SeekBar?, progreso : Int,fromUser: Boolean ){
                 //actualizamos el textSatisfaccion:
                 textSatisfaccion.setText("$progreso/10")
             }
-            //metodo abstracto que notifica cuando el usuario ha empezado a tocar el seekbar
+            //metodo abstracto que notifica cuando el usuario ha empezado a tocar el seekbar -> no lo uso
             override fun onStartTrackingTouch(p0: SeekBar?) {
             }
-            //metodo abstracto que notifica cuando el usuario ha terminado de tocar el seekbar
+            //metodo abstracto que notifica cuando el usuario ha terminado de tocar el seekbar -> no lo uso
             override fun onStopTrackingTouch(p0: SeekBar?) {
             }
         })
@@ -147,8 +148,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             //vamos a controlar que los campos a introducir no esten vacios
             if (textNombre.text.toString().isEmpty()){
                 mensajeError("El campo Nombre esta vacio")
+
             }else if (textApellido.text.toString().isEmpty()){
                 mensajeError("El campo Apellido esta vacio")
+
             //vamos a introducir en este condicional la funcion de validarCorreo, si devuelve false esq no cumple con el validador
             }else if(validarCorrreo(textCorreo.text.toString())!= true){
                 mensajeError("Correo introducido no valido")
@@ -196,7 +199,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     /**
      * Funcion que envia un mensaje de error usando snackbar cuando el correo no es validado
      * @param email
-     * @return Booleano
+     * @return Boolean
      */
     private fun validarCorrreo (email : String): Boolean{
         //^ : indica lel inicio de cadena
