@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     /**
      *Funcion que cuya logica controla si los checkBox son activados o no
-     * @return String
+     * @return string
      */
     private fun validadorCheckBox() : String{
         //Log.d("CHECK", "${checkBoxLectura.isChecked}-${checkBoxDeporte.isChecked}-${checkBoxMusica.isChecked}-${checkBoxArte.isChecked}")
