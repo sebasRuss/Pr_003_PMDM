@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -43,8 +46,8 @@
             android:id="@+id/editTextNombre"
             android:layout_width="220dp"
             android:layout_height="42dp"
-            android:inputType="textPersonName"
             android:hint="@string/name"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.146"
@@ -56,8 +59,8 @@
             android:id="@+id/editTextApellido"
             android:layout_width="220dp"
             android:layout_height="42dp"
-            android:inputType="textPersonName"
             android:hint="@string/apellido"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
             app:layout_constraintHorizontal_bias="0.0"
@@ -70,8 +73,8 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
             android:hint="@string/correo_electronico"
+            android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextApellido"
             app:layout_constraintHorizontal_bias="0.0"
@@ -211,22 +214,22 @@
             android:text="@string/guardar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupSexo"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.189" />
 
         <TextView
             android:id="@+id/textViewVisualizacionPerfil"
-            android:layout_width="279dp"
-            android:layout_height="112dp"
+            android:layout_width="383dp"
+            android:layout_height="142dp"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.318"
+            app:layout_constraintHorizontal_bias="0.416"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonGuardar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.309" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
