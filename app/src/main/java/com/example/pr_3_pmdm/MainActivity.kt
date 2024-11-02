@@ -157,8 +157,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 mensajeError("Correo introducido no valido")
             } else {
                 val mensajeVisualizacion =
-                    "Nombre: $nombre\n\nApellido: $apellido\n\nCorreo Electronico: $correo\n\nCiudad:" +
-                            " $ciudad\n\nPreferencias: $preferencia\n\nSexo: $sexo\n\nNivel Satisfaccion: $nivelSatisfaccion\n\nSuscripción: $eleccionSuscrito "
+                    "Nombre: $nombre\nApellido: $apellido\nCorreo Electronico: $correo\nCiudad:" +
+                            " $ciudad\nPreferencias: $preferencia\nSexo: $sexo\nNivel Satisfaccion: $nivelSatisfaccion\nSuscripción: $eleccionSuscrito "
 
                 //enviamos la infomacion a la visuazliccion del textView
                 textVisualizacion.setText(mensajeVisualizacion)
