@@ -1,11 +1,13 @@
 package com.example.pr_3_pmdm
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.media.audiofx.BassBoost.OnParameterChangeListener
 import android.os.Bundle
 import android.provider.MediaStore.Audio.Radio
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -63,7 +65,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         checkBoxDeporte = findViewById(R.id.checkBoxDeporte)
         checkBoxMusica = findViewById(R.id.checkBoxMusica)
         checkBoxArte = findViewById(R.id.checkBoxArte)
+
         textNombre = findViewById(R.id.editTextNombre)
+        //nos aseguramos que al iniciar la app, el campo nombre este seleccionado por defecto
+        textNombre.requestFocus()
+
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(textNombre, InputMethodManager.SHOW_IMPLICIT)
+
         textApellido = findViewById(R.id.editTextApellido)
         textCorreo = findViewById(R.id.editTextTextCorreoElectronico)
 
@@ -130,6 +139,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     /**
      * Funcion que mostrara la informacion al presionar el botonGuardar
      */
+    @SuppressLint("ServiceCast")
     private fun visualizacion (){
         //incorporamos a esta funcion el botonGuardar
         botonGuardar.setOnClickListener {
