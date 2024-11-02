@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
+        }//comentario
         //instanciamos elementos graficos
         radioGroup = findViewById(R.id.radioGroupSexo)
         botonGuardar = findViewById(R.id.buttonGuardar)
