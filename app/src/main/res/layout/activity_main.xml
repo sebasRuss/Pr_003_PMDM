@@ -6,13 +6,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/azulClaro">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        >
 
 
         <TextView
@@ -25,7 +27,8 @@
             app:layout_constraintHorizontal_bias="0.132"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022" />
+            app:layout_constraintVertical_bias="0.022"
+            />
 
         <!-- Importante el tipo de dato, texto, correo...se usa el
         android:input=textPersonName -->
@@ -35,13 +38,14 @@
             android:id="@+id/imageViewFoto"
             android:layout_width="96dp"
             android:layout_height="97dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.818"
             app:layout_constraintStart_toEndOf="@+id/textViewPerfil"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.023"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/coco" />
 
         <EditText
             android:id="@+id/editTextNombre"
@@ -54,7 +58,8 @@
             app:layout_constraintHorizontal_bias="0.146"
             app:layout_constraintStart_toStartOf="@+id/textViewPerfil"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfil"
-            app:layout_constraintVertical_bias="0.053" />
+            app:layout_constraintVertical_bias="0.053"
+            android:background="@color/amarillo"/>
 
         <EditText
             android:id="@+id/editTextApellido"
@@ -67,7 +72,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextNombre"
             app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
-            app:layout_constraintVertical_bias="0.051" />
+            app:layout_constraintVertical_bias="0.051"
+            android:background="@color/amarillo"/>
 
         <EditText
             android:id="@+id/editTextTextCorreoElectronico"
@@ -81,7 +87,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextApellido"
             app:layout_constraintTop_toBottomOf="@+id/editTextApellido"
-            app:layout_constraintVertical_bias="0.049" />
+            app:layout_constraintVertical_bias="0.049"
+            android:background="@color/amarillo"/>
 
         <RadioGroup
             android:id="@+id/radioGroupSexo"
@@ -93,13 +100,15 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editTextTextCorreoElectronico"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@color/amarillo">
 
             <RadioButton
                 android:id="@+id/radioButtonMasculino"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/masculino" />
+                android:text="@string/masculino"
+                />
 
             <RadioButton
                 android:id="@+id/radioButtonFemenino"
@@ -123,7 +132,9 @@
             app:layout_constraintHorizontal_bias="0.833"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.201" />
+            app:layout_constraintVertical_bias="0.201"
+            android:background="@color/amarillo"
+             />
 
         <CheckBox
             android:id="@+id/checkBoxLectura"
@@ -135,7 +146,8 @@
             app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.032"
+            android:background="@color/amarillo"/>
 
         <CheckBox
             android:id="@+id/checkBoxDeporte"
@@ -147,7 +159,8 @@
             app:layout_constraintHorizontal_bias="0.348"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.032"
+            android:background="@color/amarillo"/>
 
         <CheckBox
             android:id="@+id/checkBoxMusica"
@@ -159,7 +172,8 @@
             app:layout_constraintHorizontal_bias="0.625"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.032"
+            android:background="@color/amarillo"/>
 
         <CheckBox
             android:id="@+id/checkBoxArte"
@@ -171,7 +185,8 @@
             app:layout_constraintHorizontal_bias="0.875"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextTextCorreoElectronico"
-            app:layout_constraintVertical_bias="0.032" />
+            app:layout_constraintVertical_bias="0.032"
+            android:background="@color/amarillo"/>
 
         <SeekBar
             android:id="@+id/seekBarSatisfaccion"
@@ -182,7 +197,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/spinnerPaises"
             app:layout_constraintTop_toBottomOf="@+id/spinnerPaises"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            />
 
         <TextView
             android:id="@+id/textViewValorSatisfaccion"
@@ -194,7 +210,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/spinnerPaises"
             app:layout_constraintTop_toBottomOf="@+id/spinnerPaises"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@color/amarillo"/>
 
         <Switch
             android:id="@+id/switchSuscribirse"
@@ -218,7 +235,8 @@
             app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupSexo"
-            app:layout_constraintVertical_bias="0.189" />
+            app:layout_constraintVertical_bias="0.189"
+            />
 
         <TextView
             android:id="@+id/textViewVisualizacionPerfil"
@@ -230,7 +248,10 @@
             app:layout_constraintHorizontal_bias="0.416"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonGuardar"
-            app:layout_constraintVertical_bias="0.309" />
+            app:layout_constraintVertical_bias="0.309"
+            android:background="@color/rojoOscuro"
+
+             />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

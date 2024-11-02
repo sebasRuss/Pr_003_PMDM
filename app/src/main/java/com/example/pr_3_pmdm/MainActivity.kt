@@ -147,8 +147,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             val preferencia = validadorCheckBox()
             //guardamos la informacion introducida en los textEdit del formulario
             val nombre = textNombre.text.toString()
-
-            //controlamos que el campo nombre no este vacio
             val apellido = textApellido.text.toString()
             val correo = textCorreo.text.toString()
             val ciudad = spinner.selectedItem.toString()
@@ -227,13 +225,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     /**
-     * Funcion que controla el uso de los checkBox
-     * @return devuelve una lista de string con el contenido texto de los checkBox
+     * Funcion que controla el uso de los radioButon
+     * @return devuelve una lista de string con el contenido texto de los radioButon
      */
 //
     private fun usoRadioBoton (): String{
 
         //guardamos la opcion que se ha seleccionado
+        //radioGroup.checkedRadioButtonId devuelve -1 cuando no se ha seleccionado nada
         val seleccionRadioButtonId = radioGroup.checkedRadioButtonId
         //si la opccion no es vacia:
         if (seleccionRadioButtonId != -1){
