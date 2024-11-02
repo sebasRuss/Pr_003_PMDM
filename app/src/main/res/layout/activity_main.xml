@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    tools:context=".MainActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        android:gravity="center_horizontal"
+        >
 
+
+        <!-- Importante el tipo de dato, texto, correo...se usa el
+        android:input=textPersonName -->
+        <!-- Usamos placeHolder: android:hint="" -->
 
         <TextView
             android:id="@+id/textViewPerfil"
             android:layout_width="199dp"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:text="@string/mi_perfil_personal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +36,8 @@
 
         <ImageView
             android:id="@+id/imageViewFoto"
-            android:layout_width="96dp"
-            android:layout_height="97dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.556"
@@ -36,42 +46,39 @@
             app:layout_constraintVertical_bias="0.025"
             app:srcCompat="@drawable/ic_launcher_background" />
 
-        <!-- Importante el tipo de dato, texto, correo...se usa el
-        android:input=textPersonName -->
-        <!-- Usamos placeHolder: android:hint="" -->
         <EditText
             android:id="@+id/editTextNombre"
-            android:layout_width="220dp"
-            android:layout_height="42dp"
-            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="@string/name"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfil"
-            app:layout_constraintVertical_bias="0.053" />
+            app:layout_constraintVertical_bias="0.06" />
 
         <EditText
             android:id="@+id/editTextApellido"
-            android:layout_width="220dp"
-            android:layout_height="42dp"
-            android:inputType="textPersonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="@string/apellido"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextNombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.082"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
-            app:layout_constraintVertical_bias="0.051" />
+            app:layout_constraintVertical_bias="0.046" />
 
         <EditText
             android:id="@+id/editTextTextCorreoElectronico"
-            android:layout_width="220dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
             android:hint="@string/correo_electronico"
+            android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextApellido"
             app:layout_constraintHorizontal_bias="0.0"
@@ -112,7 +119,7 @@
 
         <Spinner
             android:id="@+id/spinnerPaises"
-            android:layout_width="165dp"
+            android:layout_width="223dp"
             android:layout_height="52dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -211,23 +218,22 @@
             android:text="@string/guardar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.384"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroupSexo"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.21" />
 
         <TextView
             android:id="@+id/textViewVisualizacionPerfil"
-            android:layout_width="279dp"
-            android:layout_height="112dp"
+            android:layout_width="335dp"
+            android:layout_height="143dp"
             android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.318"
+            app:layout_constraintHorizontal_bias="0.46"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonGuardar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>
