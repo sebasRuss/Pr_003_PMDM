@@ -44,19 +44,19 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     lateinit var textCorreo : EditText
     var eleccionSuscrito = ".."
 
+    lateinit var mensajeGuardado : String
 
-    @SuppressLint("MissingInflatedId")
+    private val clave_editTExtVisualizacion = "valor clave editText"
+    private val clave_seekBar = "valor clave seekBar"
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
         //instanciamos elementos graficos
         radioGroup = findViewById(R.id.radioGroupSexo)
         botonGuardar = findViewById(R.id.buttonGuardar)
@@ -122,16 +122,35 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 eleccionSuscrito = "No Suscrito"
             }
         }
+        //verificamos si existe un estado guardado
+        if (savedInstanceState != null){
 
-    }
+            val guardadoProgresoTexto = savedInstanceState.getString(clave_editTExtVisualizacion)
+            textVisualizacion.setText(guardadoProgresoTexto)
 
+            val guardadoPregresoSeekBar = savedInstanceState.getInt(clave_seekBar)
+            seekBar.progress = guardadoPregresoSeekBar
+        }
+   }
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-        visualizacion()
-
-        //
+        botonGuardar.setOnClickListener {
+            visualizacion()
+        }
     }
 
+    /**
+     * Este metodo al ser destruida la actividad (girar pantalla) almacena la informacion recogida
+     * para luego traspasarla a la nueva actividad
+     * @param outState: Bundle
+     */
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        //este controlara que se guarde lo que se visualizara en el textViewVisualizacion
+        outState.putString(clave_editTExtVisualizacion, textVisualizacion.text.toString())
+        //este controlara que se guarde el valor del seekBar
+        outState.putInt(clave_seekBar, seekBar.progress)
+    }
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
     }
@@ -139,10 +158,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     /**
      * Funcion que mostrara la informacion al presionar el botonGuardar
      */
-    @SuppressLint("ServiceCast")
     private fun visualizacion (){
-        //incorporamos a esta funcion el botonGuardar
-        botonGuardar.setOnClickListener {
 
             val preferencia = validadorCheckBox()
             //guardamos la informacion introducida en los textEdit del formulario
@@ -166,12 +182,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             } else {
                 val mensajeVisualizacion =
                     "Nombre: $nombre\nApellido: $apellido\nCorreo Electronico: $correo\nCiudad:" +
-                            " $ciudad\nPreferencias: $preferencia\nSexo: $sexo\nNivel Satisfaccion: $nivelSatisfaccion\nSuscripción: $eleccionSuscrito "
+                            " $ciudad\nPreferencias: $preferencia\nSexo: $sexo\nNivel Satisfaccion: $nivelSatisfaccion\nSuscripción: $eleccionSuscrito"
+
+                mensajeGuardado = mensajeVisualizacion
 
                 //enviamos la infomacion a la visuazliccion del textView
                 textVisualizacion.setText(mensajeVisualizacion)
             }
-        }
+
     }
 
     /**
@@ -246,5 +264,6 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             return "No ha seleccionado un sexo"
         }
     }
+
 
 }
