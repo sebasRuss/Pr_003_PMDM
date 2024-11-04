@@ -254,6 +254,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         val seleccionRadioButtonId = radioGroup.checkedRadioButtonId
         //si la opccion no es vacia:
         //
+        //
         if (seleccionRadioButtonId != -1){
             //tomamos la opcion seleccionada
             val seleccionRadioButton = findViewById<RadioButton>(seleccionRadioButtonId)
